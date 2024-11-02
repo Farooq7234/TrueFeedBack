@@ -5,17 +5,19 @@ import Link from 'next/link';
 import { useSession, signOut } from 'next-auth/react';
 import { Button } from './ui/button';
 import { User } from 'next-auth';
+import TypingAnimation from "@/components/magicui/typing-animation";
 
 function Navbar() {
   const { data: session } = useSession();
   const user : User = session?.user as User;
 
   return (
-    <nav className="p-4 md:p-6 shadow-md bg-gray-900 text-white">
-      <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
-        <a href="#" className="text-xl font-bold mb-4 md:mb-0">
-          True Feedback
-        </a>
+    <nav className="p-4  md:p-6 shadow-md  text-white">
+      <div className="container mx-auto flex cv md:flex-row justify-between items-center">
+      <TypingAnimation
+      className="text-lg md:text-xl font-bold text-black dark:text-white"
+      text="True FeedBack"
+    />
         {session ? (
           <>
             <span className="mr-4">

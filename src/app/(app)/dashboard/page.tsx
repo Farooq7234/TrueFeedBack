@@ -36,6 +36,8 @@ function UserDashboard() {
   const { register, watch, setValue } = form;
   const acceptMessages = watch('acceptMessages');
 
+  // Checking accepting the message or not
+
   const fetchAcceptMessages = useCallback(async () => {
     setIsSwitchLoading(true);
     try {
@@ -54,6 +56,8 @@ function UserDashboard() {
       setIsSwitchLoading(false);
     }
   }, [setValue, toast]);
+
+  // Fetching all the messages using get request
 
   const fetchMessages = useCallback(
     async (refresh: boolean = false) => {

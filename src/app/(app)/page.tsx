@@ -1,13 +1,17 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { Mail } from "lucide-react"; // Assuming you have an icon for messages
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Autoplay from "embla-carousel-autoplay";
 import SparklesText from "@/components/magicui/sparkles-text";
 import messages from "@/messages.json";
+import { Spotlight } from "@/components/ui/spotlight";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 import {
   Carousel,
@@ -21,9 +25,13 @@ export default function Home() {
   return (
     <>
       {/* Main content */}
-      <main className="flex-grow flex flex-col items-center justify-center px-4 md:px-24 py-12  text-black">
-        <section className="text-center mb-8 md:mb-12">
-        <SparklesText text="Dive into the World of Anonymous Feedback" />
+      <main className="flex-grow flex flex-col items-center justify-center px-4  text-white">
+        <Spotlight
+          className="-top-40 left-0 md:left-60 md:-top-20"
+          fill="gray"
+        />
+        <section className="text-center flex flex-col justify-center items-center pt-28 pb-20">
+          <SparklesText className="text-4xl md:text-5xl" text="Dive into the World of Anonymous Feedback" />
           <p className="mt-3 md:mt-4 text-base md:text-lg">
             True Feedback - Where your identity remains a secret.
           </p>
@@ -55,6 +63,32 @@ export default function Home() {
             ))}
           </CarouselContent>
         </Carousel>
+
+        <section className="w-full md:w-[75%] py-12 ">
+          <h2 className="text-center text-xl md:text-4xl mb-10">FAQ's</h2>
+          <Accordion type="single" collapsible className="w-full">
+            <AccordionItem value="item-1">
+              <AccordionTrigger>Is it accessible?</AccordionTrigger>
+              <AccordionContent>
+                Yes. It adheres to the WAI-ARIA design pattern.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-2">
+              <AccordionTrigger>Is it styled?</AccordionTrigger>
+              <AccordionContent>
+                Yes. It comes with default styles that matches the other
+                components&apos; aesthetic.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-3">
+              <AccordionTrigger>Is it animated?</AccordionTrigger>
+              <AccordionContent>
+                Yes. It&apos;s animated by default, but you can disable it if
+                you prefer.
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </section>
       </main>
 
       {/* Footer */}
