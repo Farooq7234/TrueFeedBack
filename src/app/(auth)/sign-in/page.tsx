@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from "react";
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
@@ -18,7 +19,11 @@ import { useRouter } from 'next/navigation';
 import { useToast } from '@/hooks/use-toast';
 import { signInSchema } from '@/schemas/signInSchema';
 
+
+
 export default function SignInForm() {
+
+  
   const router = useRouter();
 
   const form = useForm<z.infer<typeof signInSchema>>({
@@ -59,10 +64,10 @@ export default function SignInForm() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-800">
-      <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
+    <div className="p-5  md:p-0 flex justify-center items-center min-h-screen overflow-hidden ">
+      <div className="w-full max-w-md p-8 space-y-8 bg-white text-black rounded-lg shadow-md z-10">
         <div className="text-center">
-          <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6">
+          <h1 className="text-4xl font-extrabold tracking-tight  mb-6">
             Welcome Back to True Feedback
           </h1>
           <p className="mb-4">Sign in to continue your secret conversations</p>
@@ -91,7 +96,7 @@ export default function SignInForm() {
                 </FormItem>
               )}
             />
-            <Button className='w-full' type="submit">Sign In</Button>
+            <Button className='w-full dark:bg-black dark:text-white' type="submit">Sign In</Button>
           </form>
         </Form>
         <div className="text-center mt-4">
@@ -103,6 +108,7 @@ export default function SignInForm() {
           </p>
         </div>
       </div>
+     
     </div>
   );
 }

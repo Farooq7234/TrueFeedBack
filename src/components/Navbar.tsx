@@ -13,7 +13,7 @@ function Navbar() {
 
   return (
     <nav className="p-4  md:p-6 shadow-md  text-white">
-      <div className="container mx-auto flex cv md:flex-row justify-between items-center">
+      <div className="container px-5  mx-auto flex cv md:flex-row justify-between items-center">
       <TypingAnimation
       className="text-lg md:text-xl font-bold text-black dark:text-white"
       text="True FeedBack"
