@@ -1,6 +1,6 @@
 "use client";
 
-import { Mail } from "lucide-react"; // Assuming you have an icon for messages
+import { ArrowRight, Mail } from "lucide-react"; // Assuming you have an icon for messages
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Autoplay from "embla-carousel-autoplay";
 import SparklesText from "@/components/magicui/sparkles-text";
@@ -9,6 +9,7 @@ import testimonials from "@/testimonials.json";
 import { Spotlight } from "@/components/ui/spotlight";
 import { NeonGradientCard } from "@/components/magicui/neon-gradient-card";
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
+import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 import {
   Accordion,
   AccordionContent,
@@ -21,9 +22,9 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+import Link from "next/link";
 
 export default function Home() {
-
   const faqs = [
     {
       question: "Is my identity truly anonymous when I send feedback?",
@@ -41,7 +42,8 @@ export default function Home() {
         "Currently, feedback is one-way and anonymous, so responses aren’t possible. However, we may add reply options in future updates.",
     },
     {
-      question: "Is there a limit to the number of feedback entries I can receive?",
+      question:
+        "Is there a limit to the number of feedback entries I can receive?",
       answer:
         "No, there’s no limit! You can receive as much feedback as you like without restrictions..",
     },
@@ -55,7 +57,7 @@ export default function Home() {
   return (
     <>
       {/* Main content */}
-      <main className="flex-grow flex flex-col items-center justify-center px-4  text-white overflow-hidden">
+      <main className="flex-grow flex flex-col items-center justify-center  text-white overflow-hidden">
         <Spotlight
           className="-top-40 left-0 md:left-60 md:-top-20"
           fill="gray"
@@ -65,9 +67,17 @@ export default function Home() {
             className="text-4xl md:text-5xl"
             text="Dive into the World of Anonymous Feedback"
           />
-          <p className="mt-3 md:mt-4 text-base md:text-lg">
+          <p className="mt-3 mb-10 md:mt-4 text-base md:text-lg">
             True Feedback - Where your identity remains a secret.
           </p>
+          <HoverBorderGradient
+            containerClassName="rounded-full"
+            as="button"
+            className="dark:bg-black bg-white text-black dark:text-white flex items-center space-x-2 "
+          >
+            <Link href={'/sign-up'} className="text-lg">Register</Link>
+            <ArrowRight/>
+          </HoverBorderGradient>
         </section>
 
         {/* Carousel for Messages */}
@@ -97,58 +107,62 @@ export default function Home() {
           </CarouselContent>
         </Carousel>
 
-        <section className="py-10 mt-28 w-full ">
-        <div>
-        <h2 className="text-center text-3xl md:text-4xl mb-20 font-bold">Key Features</h2>
-          <div className="flex-col gap-10 md:gap-0 flex md:flex-row justify-around items-center">
-          <NeonGradientCard className="max-w-sm items-center justify-center text-center">
-            <span className="pointer-events-none z-10 h-full whitespace-pre-wrap bg-gradient-to-br from-[#ff2975] from-35% to-[#00FFF1] bg-clip-text text-center text-2xl font-bold leading-none tracking-tighter text-transparent dark:drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)]">
-              1. Generate a Link
-            </span>
-          </NeonGradientCard>{" "}
-          <NeonGradientCard className="max-w-sm items-center justify-center text-center">
-            <span className="pointer-events-none z-10 h-full whitespace-pre-wrap bg-gradient-to-br from-[#ff2975] from-35% to-[#00FFF1] bg-clip-text text-center text-2xl font-bold leading-none tracking-tighter text-transparent dark:drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)]">
-              2. Share it
-            </span>
-          </NeonGradientCard>{" "}
-          <NeonGradientCard className="max-w-sm items-center justify-center text-center">
-            <span className="pointer-events-none z-10 h-full whitespace-pre-wrap bg-gradient-to-br from-[#ff2975] from-35% to-[#00FFF1] bg-clip-text text-center text-2xl font-bold leading-none tracking-tighter text-transparent dark:drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)]">
-              3. Receive Feedback
-            </span>
-          </NeonGradientCard>
+        <section className="py-10  mt-28 w-full ">
+          <div>
+            <h2 className="text-center text-3xl md:text-4xl mb-20 font-bold">
+              Key Features
+            </h2>
+            <div className="flex-col gap-10 md:gap-0 flex md:flex-row justify-around items-center">
+              <NeonGradientCard className="max-w-sm items-center justify-center text-center">
+                <span className="pointer-events-none z-10 h-full whitespace-pre-wrap bg-gradient-to-br from-[#ff2975] from-35% to-[#00FFF1] bg-clip-text text-center text-2xl font-bold leading-none tracking-tighter text-transparent dark:drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)]">
+                  1. Generate a Link
+                </span>
+              </NeonGradientCard>{" "}
+              <NeonGradientCard className="max-w-sm items-center justify-center text-center">
+                <span className="pointer-events-none z-10 h-full whitespace-pre-wrap bg-gradient-to-br from-[#ff2975] from-35% to-[#00FFF1] bg-clip-text text-center text-2xl font-bold leading-none tracking-tighter text-transparent dark:drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)]">
+                  2. Share it
+                </span>
+              </NeonGradientCard>{" "}
+              <NeonGradientCard className="max-w-sm items-center justify-center text-center">
+                <span className="pointer-events-none z-10 h-full whitespace-pre-wrap bg-gradient-to-br from-[#ff2975] from-35% to-[#00FFF1] bg-clip-text text-center text-2xl font-bold leading-none tracking-tighter text-transparent dark:drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)]">
+                  3. Receive Feedback
+                </span>
+              </NeonGradientCard>
+            </div>
           </div>
-        </div>
         </section>
 
         <section className=" py-20 px-5 w-full">
-        <div className="container mx-auto">
-          <h3 className="text-3xl font-bold mb-12 text-center">
-            Frequently Asked Questions
-          </h3>
-          <Accordion type="single" collapsible className="w-full">
-            {faqs.map((faq, index) => (
-              <AccordionItem  key={index} value={`item-${index}`}>
-                <AccordionTrigger>{faq.question}</AccordionTrigger>
-                <AccordionContent>{faq.answer}</AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
-      </section>
+          <div className="container mx-auto">
+            <h3 className="text-3xl font-bold mb-12 text-center">
+              Frequently Asked Questions
+            </h3>
+            <Accordion type="single" collapsible className="w-full">
+              {faqs.map((faq, index) => (
+                <AccordionItem key={index} value={`item-${index}`}>
+                  <AccordionTrigger>{faq.question}</AccordionTrigger>
+                  <AccordionContent>{faq.answer}</AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </section>
 
-      <section className="py-10 sm:py-20 px-5 w-full">
-      <h2 className="text-center text-3xl md:text-4xl mb-20 font-bold">Testimonials</h2>
-      <InfiniteMovingCards
-        items={testimonials}
-        direction="right"
-        speed="slow"
-      />
-      </section>
-
+        <section className="py-10 bg-[#000] sm:py-20 px-5 w-full">
+          <h2 className="text-center text-3xl md:text-4xl mb-20 font-bold">
+            Testimonials
+          </h2>
+          <InfiniteMovingCards
+            items={testimonials}
+            direction="right"
+            speed="slow"
+          />
+        </section>
       </main>
 
       {/* Footer */}
-      <footer className="text-center p-4 md:p-10 pb-12  text-white">
+      <hr />
+      <footer className="text-center bg-[#000] p-4 md:p-10 pb-12  text-white">
         © 2024 True Feedback. All rights reserved.
       </footer>
     </>
