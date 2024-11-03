@@ -5,8 +5,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Autoplay from "embla-carousel-autoplay";
 import SparklesText from "@/components/magicui/sparkles-text";
 import messages from "@/messages.json";
+import testimonials from "@/testimonials.json";
 import { Spotlight } from "@/components/ui/spotlight";
 import { NeonGradientCard } from "@/components/magicui/neon-gradient-card";
+import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 import {
   Accordion,
   AccordionContent,
@@ -53,7 +55,7 @@ export default function Home() {
   return (
     <>
       {/* Main content */}
-      <main className="flex-grow flex flex-col items-center justify-center px-4  text-white">
+      <main className="flex-grow flex flex-col items-center justify-center px-4  text-white overflow-hidden">
         <Spotlight
           className="-top-40 left-0 md:left-60 md:-top-20"
           fill="gray"
@@ -132,6 +134,15 @@ export default function Home() {
             ))}
           </Accordion>
         </div>
+      </section>
+
+      <section className="py-10 sm:py-20 px-5 w-full">
+      <h2 className="text-center text-3xl md:text-4xl mb-20 font-bold">Testimonials</h2>
+      <InfiniteMovingCards
+        items={testimonials}
+        direction="right"
+        speed="slow"
+      />
       </section>
 
       </main>

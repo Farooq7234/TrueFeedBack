@@ -63,7 +63,9 @@ const config: Config = {
   			'accordion-down': 'accordion-down 0.2s ease-out',
   			'accordion-up': 'accordion-up 0.2s ease-out',
   			meteor: 'meteor 5s linear infinite',
-  			'background-position-spin': 'background-position-spin 3000ms infinite alternate'
+  			'background-position-spin': 'background-position-spin 3000ms infinite alternate',
+			scroll:
+			"scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
   		},
   		keyframes: {
   			grid: {
@@ -105,19 +107,6 @@ const config: Config = {
   					height: '0'
   				}
   			},
-  			meteor: {
-  				'0%': {
-  					transform: 'rotate(215deg) translateX(0)',
-  					opacity: '1'
-  				},
-  				'70%': {
-  					opacity: '1'
-  				},
-  				'100%': {
-  					transform: 'rotate(215deg) translateX(-500px)',
-  					opacity: '0'
-  				}
-  			},
   			'background-position-spin': {
   				'0%': {
   					backgroundPosition: 'top center'
@@ -125,7 +114,12 @@ const config: Config = {
   				'100%': {
   					backgroundPosition: 'bottom center'
   				}
-  			}
+  			},
+			scroll: {
+			to: {
+				  transform: "translate(calc(-50% - 0.5rem))",
+			},
+			  },
   		}
   	}
   },
