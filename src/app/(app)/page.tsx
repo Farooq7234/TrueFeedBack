@@ -62,7 +62,7 @@ export default function Home() {
           className="-top-40 left-0 md:left-60 md:-top-20"
           fill="gray"
         />
-        <section className="text-center flex flex-col justify-center items-center pt-28 pb-20">
+        <section className="text-center flex flex-col justify-center items-center pt-28 pb-20 px-4">
           <SparklesText
             className="text-4xl md:text-5xl"
             text="Dive into the World of Anonymous Feedback"
