@@ -10,6 +10,7 @@ import { Spotlight } from "@/components/ui/spotlight";
 import { NeonGradientCard } from "@/components/magicui/neon-gradient-card";
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
+import { VelocityScroll } from "@/components/magicui/scroll-based-velocity";
 import {
   Accordion,
   AccordionContent,
@@ -58,45 +59,46 @@ export default function Home() {
     <>
       {/* Main content */}
       <main className="flex-grow flex flex-col items-center justify-center  text-white overflow-hidden">
+        <section className="px-4 text-center flex flex-col justify-center items-center  min-h-screen w-full">
         <Spotlight
           className="-top-40 left-0 md:left-60 md:-top-20"
           fill="gray"
         />
-        <section className="text-center flex flex-col justify-center items-center pt-28 pb-20 px-4">
           <SparklesText
-            className="text-4xl md:text-5xl"
+            className="text-3xl md:text-5xl"
             text="Dive into the World of Anonymous Feedback"
           />
-          <p className="mt-3 mb-10 md:mt-4 text-base md:text-lg">
+          <p className="text-base md:text-lg py-5">
             True Feedback - Where your identity remains a secret.
           </p>
           <HoverBorderGradient
-            containerClassName="rounded-full"
+            containerClassName="rounded-full my-5"
             as="button"
             className="dark:bg-black bg-white text-black dark:text-white flex items-center space-x-2 "
           >
-            <Link href={'/sign-up'} className="text-lg">Register</Link>
-            <ArrowRight/>
+            <Link href={"/sign-up"} className="text-lg">
+              Register
+            </Link>
+            <ArrowRight />
           </HoverBorderGradient>
-        </section>
 
-        {/* Carousel for Messages */}
-        <Carousel
+         
+          <Carousel
           plugins={[Autoplay({ delay: 2000 })]}
-          className="px-4 w-full max-w-lg md:max-w-xl"
+          className="w-full max-w-lg md:max-w-xl"
         >
           <CarouselContent>
             {messages.map((message, index) => (
-              <CarouselItem key={index} className="p-4">
+              <CarouselItem key={index} className="">
                 <Card>
                   <CardHeader>
-                    <CardTitle>{message.title}</CardTitle>
+                    <CardTitle className="text-left">{message.title}</CardTitle>
                   </CardHeader>
-                  <CardContent className="flex flex-col md:flex-row items-start space-y-2 md:space-y-0 md:space-x-4">
-                    <Mail className="flex-shrink-0" />
+                  <CardContent className="flex flex-col md:flex-row items-start space-y-2 md:space-y-0 md:space-x-4 ">
+                    <Mail className="flex-shrink-0 " />
                     <div>
                       <p>{message.content}</p>
-                      <p className="text-xs text-muted-foreground">
+                      <p className="text-xs text-left text-muted-foreground">
                         {message.received}
                       </p>
                     </div>
@@ -107,7 +109,21 @@ export default function Home() {
           </CarouselContent>
         </Carousel>
 
-        <section className="py-10  mt-28 w-full ">
+        
+        </section>
+
+        {/* Carousel for Messages */}
+        
+
+        <section className="py-10 bg-black w-full">
+          <VelocityScroll
+            text="True FeedBack"
+            default_velocity={5}
+            className="font-display text-center text-4xl font-bold tracking-[-0.02em] text-black drop-shadow-sm dark:text-white md:text-5xl md:leading-[5rem]"
+          />
+        </section>
+
+        <section className=" pt-10 bg-black w-full ">
           <div>
             <h2 className="text-center text-3xl md:text-4xl mb-20 font-bold">
               Key Features
@@ -132,7 +148,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className=" py-20 px-5 w-full">
+        <section className=" py-20 bg-black px-5 w-full">
           <div className="container mx-auto">
             <h3 className="text-3xl font-bold mb-12 text-center">
               Frequently Asked Questions

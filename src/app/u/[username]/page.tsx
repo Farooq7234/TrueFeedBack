@@ -24,38 +24,33 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { messageSchema } from "@/schemas/messageSchema";
 
-const specialChar = "||";
-
-const parseStringMessages = (messageString: string): string[] => {
-  return messageString.split(specialChar);
-};
-
-const initialMessageString =
-  "What's your favourite movie?||Do you have any pets?||What's your dream job?";
-
-  interface QuestionsResponse {
-    result: string[]; 
-  }
+// Define your expected API response structure
+interface QuestionsResponse {
+  result: string; // Expect a single string with questions separated by "||"
+}
 
 export default function SendMessage() {
   const params = useParams<{ username: string }>();
   const username = params.username;
-  // const [isLoadingAI, setIsLoadingAI] = useState<boolean>(false);
   const [questions, setQuestions] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isFetching, setisFetching] = useState(false)
 
+  // Set up form handling
   const form = useForm<z.infer<typeof messageSchema>>({
     resolver: zodResolver(messageSchema),
   });
 
+  // Watch the current message content
   const messageContent = form.watch("content");
 
+  // Function to handle click on suggested message
   const handleMessageClick = (message: string) => {
     form.setValue("content", message);
   };
 
-  const [isLoading, setIsLoading] = useState(false);
-
+  // Function to submit the message
   const onSubmit = async (data: z.infer<typeof messageSchema>) => {
     setIsLoading(true);
     try {
@@ -63,7 +58,6 @@ export default function SendMessage() {
         ...data,
         username,
       });
-
       toast({
         title: response.data.message,
         variant: "default",
@@ -74,7 +68,7 @@ export default function SendMessage() {
       toast({
         title: "Error",
         description:
-          axiosError.response?.data.message ?? "Failed to sent message",
+          axiosError.response?.data.message ?? "Failed to send message",
         variant: "destructive",
       });
     } finally {
@@ -82,18 +76,15 @@ export default function SendMessage() {
     }
   };
 
+  // Function to fetch suggested messages from the API
   const fetchSuggestedMessages = async () => {
     try {
+      setisFetching(true)
       const response = await axios.post<QuestionsResponse>('/api/suggest-messages');
-  
-      // Split the response text by '||' to get an array of questions
-      const questions = response.data.result
-      console.log(questions)
-  
-      return questions;
+      // Split response string by "||" and trim each question
+      const questionsArray = response.data.result.split("||").map((q) => q.trim());
+      setQuestions(questionsArray);
     } catch (error) {
-      if (axios.isAxiosError(error)) {
-        // Handle specific Axios errors
       const axiosError = error as AxiosError<ApiResponse>;
       toast({
         title: "Error",
@@ -101,18 +92,15 @@ export default function SendMessage() {
           axiosError.response?.data.message ?? "Failed to suggest message",
         variant: "destructive",
       });
-        console.error('Error fetching questions:', error.response?.data);
-        throw new Error(error.response?.data.error || 'Failed to fetch questions');
-      } else {
-        // Handle general errors
-        console.error('An unexpected error occurred:', error);
-        throw new Error('An unexpected error occurred');
-      }
+      setError('Failed to fetch questions');
+    }
+    finally{
+      setisFetching(false)
     }
   };
 
   return (
-    <div className="container mx-auto my-8 p-6  rounded max-w-4xl">
+    <div className="container mx-auto my-8 p-6 rounded max-w-4xl">
       <h1 className="text-4xl font-bold mb-6 text-center">
         Public Profile Link
       </h1>
@@ -152,9 +140,14 @@ export default function SendMessage() {
 
       <div className="space-y-4 my-8">
         <div className="space-y-2">
-          <Button onClick={fetchSuggestedMessages} className="my-4">
+          {isFetching ? (  <Button disabled>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Please wait
+              </Button>):(
+            <Button onClick={fetchSuggestedMessages} className="my-4">
             Suggest Messages
           </Button>
+          )}
           <p>Click on any message below to select it.</p>
         </div>
         <Card>
@@ -176,7 +169,7 @@ export default function SendMessage() {
                 </Button>
               ))
             ) : (
-              <p>No questions available.</p> // Message if no questions are present
+              <p>No questions available.</p>
             )}
           </CardContent>
         </Card>
