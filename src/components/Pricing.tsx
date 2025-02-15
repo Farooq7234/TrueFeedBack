@@ -46,7 +46,7 @@ const Pricing = () => {
           ].map((plan) => (
             <div
               key={plan.name}
-              className={`p-8 rounded-lg ${
+              className={`p-8 mx-4 rounded-lg ${
                 plan.highlighted
                   ? "bg-foreground text-background scale-105"
                   : "bg-background border"
