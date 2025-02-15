@@ -69,7 +69,7 @@ export default function SignInForm() {
   return (
     <>
       <div className="min-h-screen flex justify-center items-center">
-        <Card className="w-[300px]  sm:w-[400px] ">
+        <Card className="w-[350px]  sm:w-[400px] ">
           <CardHeader>
             <CardTitle className="text-2xl mx-auto">Welcome Back!</CardTitle>
             <CardDescription className="mx-auto">
