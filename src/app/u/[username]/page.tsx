@@ -35,7 +35,7 @@ export default function SendMessage() {
   const [questions, setQuestions] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [isFetching, setisFetching] = useState(false)
+  const [isFetching, setisFetching] = useState(false);
 
   // Set up form handling
   const form = useForm<z.infer<typeof messageSchema>>({
@@ -79,10 +79,14 @@ export default function SendMessage() {
   // Function to fetch suggested messages from the API
   const fetchSuggestedMessages = async () => {
     try {
-      setisFetching(true)
-      const response = await axios.post<QuestionsResponse>('/api/suggest-messages');
+      setisFetching(true);
+      const response = await axios.post<QuestionsResponse>(
+        "/api/suggest-messages"
+      );
       // Split response string by "||" and trim each question
-      const questionsArray = response.data.result.split("||").map((q) => q.trim());
+      const questionsArray = response.data.result
+        .split("||")
+        .map((q) => q.trim());
       setQuestions(questionsArray);
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;
@@ -92,15 +96,14 @@ export default function SendMessage() {
           axiosError.response?.data.message ?? "Failed to suggest message",
         variant: "destructive",
       });
-      setError('Failed to fetch questions');
-    }
-    finally{
-      setisFetching(false)
+      setError("Failed to fetch questions");
+    } finally {
+      setisFetching(false);
     }
   };
 
   return (
-    <div className="container mx-auto my-8 p-6 rounded max-w-4xl">
+    <div className="container mx-auto my-8 mt-20 p-6 rounded max-w-4xl">
       <h1 className="text-4xl font-bold mb-6 text-center">
         Public Profile Link
       </h1>
@@ -140,13 +143,15 @@ export default function SendMessage() {
 
       <div className="space-y-4 my-8">
         <div className="space-y-2">
-          {isFetching ? (  <Button disabled>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Please wait
-              </Button>):(
+          {isFetching ? (
+            <Button disabled>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Please wait
+            </Button>
+          ) : (
             <Button onClick={fetchSuggestedMessages} className="my-4">
-            Suggest Messages
-          </Button>
+              Suggest Messages
+            </Button>
           )}
           <p>Click on any message below to select it.</p>
         </div>
@@ -156,7 +161,7 @@ export default function SendMessage() {
           </CardHeader>
           <CardContent className="flex flex-col space-y-4">
             {error ? (
-              <p className="text-red-500">{error}</p> 
+              <p className="text-red-500">{error}</p>
             ) : questions && questions.length > 0 ? (
               questions.map((message, index) => (
                 <Button
