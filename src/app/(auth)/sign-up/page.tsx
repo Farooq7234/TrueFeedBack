@@ -116,7 +116,7 @@ export default function SignUpForm() {
   return (
     <>
       <div className="flex min-h-screen justify-center items-center mt-6">
-        <Card className="w-[300px] md:w-[400px]">
+        <Card className="w-[350px] md:w-[400px]">
           <CardHeader>
             <CardTitle className="text-3xl text-center">
               Create New Account
