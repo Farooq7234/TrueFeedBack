@@ -10,7 +10,7 @@ const CallToAction = () => {
             Ready to Transform Your Feedback Culture?
           </h2>
           <p className="text-xl text-muted-foreground mb-8">
-            Join thousands of organizations already using FeedbackFlow to drive
+            Join thousands of organizations already using TrueFeedBack to drive
             positive change.
           </p>
           <Button
