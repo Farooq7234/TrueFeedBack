@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const Footer = () => {
@@ -5,7 +6,14 @@ const Footer = () => {
     <>
       <footer className="py-12 ">
         <div className="mt-12 pt-8 border-t text-center text-muted-foreground">
-          © 2025 FeedbackFlow. All rights reserved.
+          © 2025 TrueFeedBack -{" "}
+          <Link
+            href={"https://linkedin.com/in/umarfarooqdev73970"}
+            className="text-accent-foreground underline"
+          >
+            Umar Farooq
+          </Link>
+          . All rights reserved.
         </div>
       </footer>
     </>

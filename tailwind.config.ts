@@ -69,7 +69,8 @@ const config: Config = {
   			'accordion-up': 'accordion-up 0.2s ease-out',
   			meteor: 'meteor 5s linear infinite',
   			'background-position-spin': 'background-position-spin 3000ms infinite alternate',
-  			scroll: 'scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite'
+  			scroll: 'scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite',
+  			rainbow: 'rainbow var(--speed, 2s) infinite linear'
   		},
   		keyframes: {
   			grid: {
@@ -192,6 +193,14 @@ const config: Config = {
   				'90%': {
   					bottom: '50%',
   					right: '25%'
+  				}
+  			},
+  			rainbow: {
+  				'0%': {
+  					'background-position': '0%'
+  				},
+  				'100%': {
+  					'background-position': '200%'
   				}
   			}
   		}

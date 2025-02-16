@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { AuroraText } from "./magicui/aurora-text";
+import { RainbowButton } from "./magicui/rainbow-button";
 
 const HeroSection = () => {
   return (
@@ -18,12 +19,9 @@ const HeroSection = () => {
               through anonymous insights.
             </p>
             <div className="flex justify-center gap-4 mt-8">
-              <Button
-                size="lg"
-                className="bg-foreground text-background hover:bg-foreground/90"
-              >
-                <Link href={"/sign-in"}>Get Started Free</Link>
-              </Button>
+              <RainbowButton>
+                <Link href={"/sign-in"}>Get Started Now</Link>
+              </RainbowButton>
             </div>
           </div>
         </div>
