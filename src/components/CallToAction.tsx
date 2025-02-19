@@ -1,7 +1,10 @@
+"use client";
 import React from "react";
 import { Button } from "./ui/button";
+import { useToast } from "@/hooks/use-toast";
 
 const CallToAction = () => {
+  const { toast } = useToast();
   return (
     <section className="py-20">
       <div className="container mx-auto px-4">
@@ -14,6 +17,12 @@ const CallToAction = () => {
             positive change.
           </p>
           <Button
+            onClick={() =>
+              toast({
+                title: "Info",
+                description: "Please login to start your free trial",
+              })
+            }
             size="lg"
             className="bg-foreground text-background hover:bg-foreground/90"
           >
