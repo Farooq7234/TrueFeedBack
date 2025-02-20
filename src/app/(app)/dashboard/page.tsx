@@ -39,8 +39,8 @@ function UserDashboard() {
   // Checking accepting the message or not
 
   const fetchAcceptMessages = useCallback(async () => {
-    setIsSwitchLoading(true);
     try {
+      setIsSwitchLoading(true);
       const response = await axios.get<ApiResponse>("/api/accept-messages");
       setValue("acceptMessages", response.data.isAcceptingMessages);
     } catch (error) {
@@ -55,7 +55,7 @@ function UserDashboard() {
     } finally {
       setIsSwitchLoading(false);
     }
-  }, [setValue, toast]);
+  }, [setValue]);
 
   // Fetching all the messages using get request
 
@@ -95,7 +95,7 @@ function UserDashboard() {
     fetchMessages();
 
     fetchAcceptMessages();
-  }, [session, setValue, toast, fetchAcceptMessages, fetchMessages]);
+  }, [session, setValue, fetchAcceptMessages, fetchMessages]);
 
   // Handle switch change
   const handleSwitchChange = async () => {
@@ -142,7 +142,7 @@ function UserDashboard() {
   };
 
   return (
-    <div className="mt-24 mx-4 md:mx-8 lg:mx-auto p-6  rounded w-full max-w-6xl">
+    <div className="mt-24 mx-4 md:mx-8 lg:mx-auto p-6 rounded max-w-6xl ">
       <h1 className="text-4xl font-bold mb-4">User Dashboard</h1>
 
       <div className="mb-4">
