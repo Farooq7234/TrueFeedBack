@@ -121,7 +121,11 @@ function UserDashboard() {
   };
 
   if (!session || !session.user) {
-    return <div></div>;
+    return (
+      <div className="min-h-screen flex justify-center items-center text-xl">
+        Login to view messages
+      </div>
+    );
   }
 
   const { username } = session.user as User;
