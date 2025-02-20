@@ -4,18 +4,15 @@ import { MessageSquareHeart, MoonIcon, SunIcon } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 import React from "react";
 
 const Header = () => {
   const { data: session } = useSession();
   const { theme, setTheme } = useTheme();
-  const router = useRouter();
 
   const handleLogout = () => {
     signOut();
-    router.push("/");
   };
   return (
     <header className="fixed top-0 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/70 z-50">
