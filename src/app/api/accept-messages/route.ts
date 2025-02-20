@@ -25,12 +25,12 @@ export async function POST(request: Request) {
   // Extracting id from user which comes from the session
 
   const userId = user._id;
-  const { acceptMesagge } = await request.json();
+  const { acceptMessages } = await request.json();
 
   try {
     const updatedUser = await UserModel.findByIdAndUpdate(
       userId,
-      { isAcceptingMessage: acceptMesagge },
+      { isAcceptingMessage: acceptMessages },
       { new: true }
     );
 
