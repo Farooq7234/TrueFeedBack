@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="mt-12 pt-8 border-t text-center text-muted-foreground">
           © 2025 TrueFeedBack -{" "}
           <Link
-            href={"https://linkedin.com/in/umarfarooqdev73970"}
+            href={"https://linkedin.com/in/umarfarooqdev7390"}
             className="text-accent-foreground underline"
           >
             Umar Farooq
