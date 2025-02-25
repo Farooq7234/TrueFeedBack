@@ -153,9 +153,9 @@ export default function SignUpForm() {
                         )}
                         <span
                           className={`text-sm font-semibold ${
-                            usernameMessage === "username is available"
-                              ? "text-red-500"
-                              : "text-green-500"
+                            usernameMessage === "Username is available"
+                              ? "text-green-500"
+                              : "text-red-500"
                           }`}
                         >
                           {usernameMessage && usernameMessage}
