@@ -149,7 +149,7 @@ export default function SignUpForm() {
                       </FormControl>
                       <FormDescription>
                         {isCheckingUsername && (
-                          <Loader2 className="text-black ml-2 w-8 h-8 animate-spin " />
+                          <Loader2 className="ml-2 w-8 h-8 animate-spin " />
                         )}
                         <span
                           className={`text-sm font-semibold ${
