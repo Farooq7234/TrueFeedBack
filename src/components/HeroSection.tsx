@@ -3,6 +3,7 @@ import { Button } from "./ui/button";
 import Link from "next/link";
 import { AuroraText } from "./magicui/aurora-text";
 import { RainbowButton } from "./magicui/rainbow-button";
+import { TextAnimate } from "./magicui/text-animate";
 
 const HeroSection = () => {
   return (
@@ -14,10 +15,10 @@ const HeroSection = () => {
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">
               Collect Anonymous Feedback <AuroraText>That Matters</AuroraText>
             </h1>
-            <p className="text-lg text-muted-foreground mt-6">
+            <TextAnimate className="text-lg text-muted-foreground mt-6">
               Create a safe space for honest feedback. Build trust and improve
               through anonymous insights.
-            </p>
+            </TextAnimate>
             <div className="flex justify-center gap-4 mt-8">
               <RainbowButton>
                 <Link href={"/sign-in"}>Get Started Now</Link>

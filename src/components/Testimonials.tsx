@@ -2,6 +2,7 @@
 
 import React from "react";
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
+import { TextAnimate } from "./magicui/text-animate";
 
 
 export function InfiniteMovingCardsDemo() {
@@ -9,12 +10,12 @@ export function InfiniteMovingCardsDemo() {
     <div className="h-[40rem] rounded-md flex flex-col antialiased bg-white dark:bg-black dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden px-4">
       {/* Heading Section */}
       <div className="mb-10 text-center max-w-2xl">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">
+        <TextAnimate className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">
           What People Say About TrueFeedback
-        </h2>
-        <p className="text-gray-600 dark:text-gray-300">
+        </TextAnimate>
+        <TextAnimate className="text-gray-600 dark:text-gray-300">
           Real, honest, and anonymous feedback from users who experienced the platform.
-        </p>
+        </TextAnimate>
       </div>
 
       {/* Infinite Scrolling Testimonials */}
