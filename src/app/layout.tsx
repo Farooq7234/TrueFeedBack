@@ -28,6 +28,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
             enableSystem
             disableTransitionOnChange
           >
+            
             <Header />
             {children}
             <Toaster />

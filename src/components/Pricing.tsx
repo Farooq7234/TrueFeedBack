@@ -1,8 +1,10 @@
 import { Users } from "lucide-react";
 import React from "react";
 import { Button } from "./ui/button";
+import { useToast } from "@/hooks/use-toast";
 
 const Pricing = () => {
+  const { toast } = useToast();
   return (
     <section className="py-20 bg-muted">
       <div className="container mx-auto px-4">
@@ -23,7 +25,7 @@ const Pricing = () => {
             },
             {
               name: "Pro",
-              price: "$29",
+              price: "$0",
               features: [
                 "Up to 50 team members",
                 "Advanced analytics",
@@ -68,6 +70,12 @@ const Pricing = () => {
                     ? "bg-background text-foreground hover:bg-background/90"
                     : ""
                 }`}
+                onClick={() =>
+                  toast({
+                    title: "Info",
+                    description: "For now, feel free to use the free plan and get started!",
+                  })
+                }
               >
                 Get Started
               </Button>

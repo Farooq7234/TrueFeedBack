@@ -1,4 +1,6 @@
+"use client";
 import { Lock, Send, EyeOff } from "lucide-react";
+import { motion } from "motion/react";
 
 const Process = () => {
   return (
@@ -28,14 +30,18 @@ const Process = () => {
                 "The recipient reviews feedback and takes necessary actions while maintaining confidentiality.",
             },
           ].map((step, index) => (
-            <div
+            <motion.div
               key={index}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+              viewport={{ once: true, amount: 0.2 }}
               className="p-8 bg-background rounded-lg border hover:shadow-lg transition-shadow"
             >
               <step.icon className="h-12 w-12 mb-4" />
               <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
               <p className="text-muted-foreground">{step.description}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
