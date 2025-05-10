@@ -4,19 +4,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { signIn } from "next-auth/react";
-import {
-  Form,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useToast } from "@/hooks/use-toast";
-import { signInSchema } from "@/schemas/signInSchema";
+import Link from "next/link";
+import { useState } from "react";
+import { Loader2 } from "lucide-react";
+
 import {
   Card,
   CardContent,
@@ -25,11 +17,18 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { useState } from "react";
-import { Loader2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { BorderBeam } from "@/components/magicui/border-beam";
+
+import { Form, FormField, FormItem, FormMessage } from "@/components/ui/form";
+import { useToast } from "@/hooks/use-toast";
+import { signInSchema } from "@/schemas/signInSchema";
 
 export default function SignInForm() {
   const router = useRouter();
+  const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm<z.infer<typeof signInSchema>>({
@@ -40,7 +39,6 @@ export default function SignInForm() {
     },
   });
 
-  const { toast } = useToast();
   const onSubmit = async (data: z.infer<typeof signInSchema>) => {
     setIsSubmitting(true);
     const result = await signIn("credentials", {
@@ -50,19 +48,14 @@ export default function SignInForm() {
     });
 
     if (result?.error) {
-      if (result.error === "CredentialsSignin") {
-        toast({
-          title: "Login Failed",
-          description: "Incorrect username or password",
-          variant: "destructive",
-        });
-      } else {
-        toast({
-          title: "Error",
-          description: result.error,
-          variant: "destructive",
-        });
-      }
+      toast({
+        title: "Login Failed",
+        description:
+          result.error === "CredentialsSignin"
+            ? "Incorrect username or password"
+            : result.error,
+        variant: "destructive",
+      });
     }
 
     if (result?.url) {
@@ -73,70 +66,68 @@ export default function SignInForm() {
   };
 
   return (
-    <>
-      <div className="min-h-screen flex justify-center items-center">
-        <Card className="w-[350px]  sm:w-[400px] ">
-          <CardHeader>
-            <CardTitle className="text-2xl mx-auto">Welcome Back!</CardTitle>
-            <CardDescription className="mx-auto">
-              Login to continue
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Form {...form}>
-              <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-6"
-              >
-                <FormField
-                  name="identifier"
-                  control={form.control}
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Email/Username</FormLabel>
-                      <Input {...field} />
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  name="password"
-                  control={form.control}
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Password</FormLabel>
-                      <Input type="password" {...field} />
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <Button
-                  className="w-full"
-                  type="submit"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? (
-                    <>
-                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Please wait
-                    </>
-                  ) : (
-                    "Sign in"
-                  )}
-                </Button>
-              </form>
-            </Form>
-            <CardFooter className="mt-6 ">
-              <p className="mx-auto">
-                Not a member yet?{" "}
-                <Link href="/sign-up" className="underline">
-                  sign up
-                </Link>
-              </p>
-            </CardFooter>
-          </CardContent>
-        </Card>
-      </div>
-    </>
+    <div className="min-h-screen flex justify-center items-center px-4">
+      <Card className="relative w-[350px] sm:w-[400px] overflow-hidden">
+        <CardHeader>
+          <CardTitle className="text-center text-2xl">Welcome Back!</CardTitle>
+          <CardDescription className="text-center">
+            Enter your credentials to access your account.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <FormField
+                name="identifier"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem>
+                    <Label htmlFor="identifier">Email / Username</Label>
+                    <Input
+                      id="identifier"
+                      placeholder="Enter your email or username"
+                      {...field}
+                    />
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                name="password"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem>
+                    <Label htmlFor="password">Password</Label>
+                    <Input
+                      id="password"
+                      type="password"
+                      placeholder="Enter your password"
+                      {...field}
+                    />
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button type="submit" className="w-full" disabled={isSubmitting}>
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Please wait
+                  </>
+                ) : (
+                  "Login"
+                )}
+              </Button>
+            </form>
+          </Form>
+        </CardContent>
+        <CardFooter className="flex justify-between items-center text-sm">
+          <Link href="/sign-up" className="underline text-muted-foreground">
+            Not a member yet? Sign up
+          </Link>
+        </CardFooter>
+        <BorderBeam duration={8} size={120} />
+      </Card>
+    </div>
   );
 }

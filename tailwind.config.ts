@@ -63,6 +63,7 @@ const config: Config = {
       },
       animation: {
         grid: "grid 15s linear infinite",
+        // scroll: "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
         gradient: "gradient 8s linear infinite",
         spotlight: "spotlight 2s ease .75s 1 forwards",
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -75,6 +76,11 @@ const config: Config = {
         rainbow: "rainbow var(--speed, 2s) infinite linear",
       },
       keyframes: {
+        scroll: {
+          to: {
+            transform: "translate(calc(-50% - 0.5rem))",
+          },
+        },
         grid: {
           "0%": {
             transform: "translateY(-50%)",
@@ -122,11 +128,11 @@ const config: Config = {
             backgroundPosition: "bottom center",
           },
         },
-        scroll: {
-          to: {
-            transform: "translate(calc(-50% - 0.5rem))",
-          },
-        },
+        // scroll: {
+        //   to: {
+        //     transform: "translate(calc(-50% - 0.5rem))",
+        //   },
+        // },
         "aurora-border": {
           "0%, 100%": {
             borderRadius: "37% 29% 27% 27% / 28% 25% 41% 37%",

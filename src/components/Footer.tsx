@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <>
       <footer className="py-12 ">
-        <div className="mt-12 pt-8 border-t text-center text-muted-foreground">
+        <div className="mt-12 pt-8 border-t text-center text-muted-foreground text-sm">
           © 2025 TrueFeedBack -{" "}
           <Link
             href={"https://linkedin.com/in/umarfarooqdev7390"}
